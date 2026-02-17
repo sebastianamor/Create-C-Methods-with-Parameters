@@ -152,40 +152,42 @@ void SetHealth(bool isHealthy)
     Console.WriteLine($"Middle: {status}");
 }*/
 
-string[] guestList = {"Rebecca", "Nadia", "Noor", "Jonte"};
+string[] guestList = { "Rebecca", "Nadia", "Noor", "Jonte" };
 string[] rsvps = new string[10];
 int count = 0;
 
-
-
-void RSVP(string name, int partySize, string allergies, bool inviteOnly) 
+void RSVP(string name, int partySize = 1, string allergies = "none", bool inviteOnly = true)
 {
-   if (inviteOnly)
-{
-    bool found = false;
-    foreach (string guest in guestList)
+    if (inviteOnly)
     {
-        if (guest.Equals(name)) {
-            found = true;
-            break;
+        bool found = false;
+        foreach (string guest in guestList)
+        {
+            if (guest.Equals(name))
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine($"Sorry, {name} is not on the guest list");
+            return;
         }
     }
-    if (!found)
-    {
-        Console.WriteLine($"Sorry, {name} is not on the guest list");
-        return;
-    }
-}
+    
+    // Agregar el RSVP si pasa las validaciones
+    rsvps[count] = $"Name: {name}, Party Size: {partySize}, Allergies: {allergies}";
+    count++;
 }
 
-RSVP("Rebecca", 1, "none", true);
-RSVP("Nadia", 2, "Nuts", true);
-RSVP("Linh", 2, "none", false);
-RSVP("Tony", 1, "Jackfruit", true);
-RSVP("Noor", 4, "none", false);
+// Llamadas a la función
+RSVP("Rebecca");
+RSVP("Nadia", 2, "Nuts");
+RSVP(name: "Linh", partySize: 2, inviteOnly: false);
+RSVP("Tony", allergies: "Jackfruit", inviteOnly: true);
+RSVP("Noor", 4, inviteOnly: false);
 RSVP("Jonte", 2, "Stone fruit", false);
-ShowRSVPs();
-
 
 void ShowRSVPs()
 {
@@ -196,3 +198,4 @@ void ShowRSVPs()
     }
 }
 
+ShowRSVPs();
