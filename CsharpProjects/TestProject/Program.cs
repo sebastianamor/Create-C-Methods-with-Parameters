@@ -152,7 +152,7 @@ void SetHealth(bool isHealthy)
     Console.WriteLine($"Middle: {status}");
 }*/
 
-string[] guestList = { "Rebecca", "Nadia", "Noor", "Jonte" };
+/*string[] guestList = { "Rebecca", "Nadia", "Noor", "Jonte" };
 string[] rsvps = new string[10];
 int count = 0;
 
@@ -198,4 +198,42 @@ void ShowRSVPs()
     }
 }
 
-ShowRSVPs();
+ShowRSVPs();*/
+
+string[,] corporate = 
+{
+    {"Robert", "Bavin"}, {"Simon", "Bright"},
+    {"Kim", "Sinclair"}, {"Aashrita", "Kamath"},
+    {"Sarah", "Delucchi"}, {"Sinan", "Ali"}
+};
+
+string[,] external = 
+{
+    {"Vinnie", "Ashton"}, {"Cody", "Dysart"},
+    {"Shay", "Lawrence"}, {"Daren", "Valdes"}
+};
+
+string externalDomain = "hayworth.com";
+string internalDomain = "contoso.com";
+
+for (int i = 0; i < corporate.GetLength(0); i++) 
+{
+    string firstName = corporate[i, 0];
+    string lastName = corporate[i, 1];
+    
+    
+    string email = firstName.Substring(0, 2).ToLower() + lastName.ToLower() + "@" + internalDomain;
+    
+    Console.WriteLine(email);
+}
+
+
+for (int i = 0; i < external.GetLength(0); i++) 
+{
+    string firstName = external[i, 0];
+    string lastName = external[i, 1];
+    
+    string email = firstName.Substring(0, 2).ToLower() + lastName.ToLower() + "@" + externalDomain;
+    
+    Console.WriteLine(email);
+}
